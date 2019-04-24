@@ -52,3 +52,8 @@ class Offer(models.Model):
             MinValueValidator(1)
         ]
     )
+
+    def seed_name(self):
+        for seed_choice in self.SEED_TYPES_CHOICES:
+            if self.seed_type in seed_choice:
+                return seed_choice[1]

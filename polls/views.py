@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 
-from .models import Choice, Question
+from .models import Choice, Question, Offer
 
 
 class IndexView(generic.ListView):
@@ -34,6 +34,13 @@ class DetailView(generic.DetailView):
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
+
+class OffersView(generic.ListView):
+    template_name = 'polls/offers.html'
+    context_object_name = 'farmers_offers'
+
+    def get_queryset(self):
+        return Offer.objects.all()
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)

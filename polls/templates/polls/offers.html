@@ -1,0 +1,32 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/pure-min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+
+<div class="container">
+<h2>Available seed offers</h2>
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Seed type</th>
+            <th>Amount of seeds in bags</th>
+            <th>Days online</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for offer in farmers_offers %}
+        {% if forloop.counter|divisibleby:2 %}
+        <tr class="pure-table-odd">
+        {% else %}
+        <tr>
+        {% endif %}
+            <td>{{offer.id}}</td>
+            <td>{{offer.seed_name}}</td>
+            <td>{{offer.amount_of_seeds}}</td>
+            <td>{{offer.days_online}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
